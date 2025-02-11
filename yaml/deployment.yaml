@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users
+  namespace: mimiproject
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: mimiusers
+  template:
+    metadata:
+      labels:
+        project: mimiusers
+    spec:
+      containers:
+        - name: users
+          image: zmfltmxkf1/mimiuser:v1.2
+          ports:
+            - containerPort: 5679
+
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql-service:3306/mimi?serverTimezone=Asia/Seoul"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "mytest"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "1234"
+
+            # - name: SPRING_DATASOURCE_URL
+            #   value: "jdbc:mysql://10.101.9.72:3306/mimi"
+            # - name: SPRING_DATASOURCE_USERNAME
+            #   value: "mytest"
+            # - name: SPRING_DATASOURCE_PASSWORD
+            #   value: "1234"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rental
+  namespace: mimiproject
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: mimirental
+  template:
+    metadata:
+      labels:
+        project: mimirental
+    spec:
+      containers:
+        - name: rental
+          image: zmfltmxkf1/mimirental:v1.2
+
+          ports:
+            - containerPort: 5678
+
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql-service:3306/mimi?serverTimezone=Asia/Seoul"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "mytest"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "1234"
+
+            # - name: SPRING_DATASOURCE_URL
+            #   value: "jdbc:mysql://10.101.9.72:3306/mimi"
+            # - name: SPRING_DATASOURCE_USERNAME
+            #   value: "mytest"
+            # - name: SPRING_DATASOURCE_PASSWORD
+            #   value: "1234"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: equipment
+  namespace: mimiproject
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: mimiequipment
+  template:
+    metadata:
+      labels:
+        project: mimiequipment
+    spec:
+      containers:
+        - name: equipment
+          image: zmfltmxkf1/mimiequipment:v1.2
+
+          ports:
+            - containerPort: 5680
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql-service:3306/mimi?serverTimezone=Asia/Seoul"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "mytest"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "1234"
+
+            # - name: SPRING_DATASOURCE_URL
+            #   value: "jdbc:mysql://10.101.9.72:3306/mimi"
+            # - name: SPRING_DATASOURCE_USERNAME
+            #   value: "mytest"
+            # - name: SPRING_DATASOURCE_PASSWORD
+            #   value: "1234"
