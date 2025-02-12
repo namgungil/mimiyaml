@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: users
-          image: zmfltmxkf1/mimiuser:v1.2
+          image: zmfltmxkf1/mimiuser:v1.2.9
           ports:
             - containerPort: 5679
 
@@ -51,7 +51,7 @@ spec:
     spec:
       containers:
         - name: rental
-          image: zmfltmxkf1/mimirental:v1.2
+          image: zmfltmxkf1/mimirental:v1.2.2
 
           ports:
             - containerPort: 5678
@@ -88,7 +88,7 @@ spec:
     spec:
       containers:
         - name: equipment
-          image: zmfltmxkf1/mimiequipment:v1.2
+          image: zmfltmxkf1/mimiequipment:v1.2.2
 
           ports:
             - containerPort: 5680
